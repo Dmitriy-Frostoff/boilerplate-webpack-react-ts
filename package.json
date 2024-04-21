@@ -1,0 +1,44 @@
+{
+  "name": "boilerplate-react-js",
+  "version": "1.0.0",
+  "description": "It's a boilerplate for usage of react (with hooks) with pure JS in a future project (FSD architecture prior). Check out the docs below to be in actual tune!",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "webpack-dev-server --config ./configs/webpack/webpack.config.js --progress",
+    "dev": "webpack --config ./configs/webpack/webpack.config.js --node-env=development --progress",
+    "build": "webpack --config ./configs/webpack/webpack.config.js --node-env=production --progress"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dmitriy-Frostoff/boilerplate-react-js"
+  },
+  "keywords": [
+    "webpack",
+    "html",
+    "scss",
+    "css-modules",
+    "js",
+    "components",
+    "FSD",
+    "react"
+  ],
+  "author": "Dmitriy Frostoff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dmitriy-Frostoff/boilerplate-react-js/issues"
+  },
+  "homepage": "https://github.com/Dmitriy-Frostoff/boilerplate-react-js?tab=readme-ov-file#readme",
+  "devDependencies": {
+    "@babel/core": "^7.24.4",
+    "@babel/preset-react": "^7.24.1",
+    "babel-loader": "^9.1.3",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
