@@ -329,7 +329,7 @@ To integrate the boilerplate do the following steps (**note**: copy the project 
 - install current packages as `devDependencies` via bash command below:
 
 ```bash
-npm i -D @types/react @types/react-dom eslint-config-airbnb eslint-config-airbnb-typescript eslint-plugin-react eslint-plugin-react-hooks
+npm i -D @types/react @types/react-dom eslint-config-airbnb eslint-config-airbnb-typescript eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks
 ```
 
 - install current packages as `dependencies` via bash command below:
@@ -466,6 +466,7 @@ With the new `packages` releases, the ones above can turn to pumpkin, so check'e
 - [The official github repo of the eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react);
 - [The official page of the eslint-plugin-react-hooks at npmjs.com](https://www.npmjs.com/package/eslint-plugin-react-hooks);
 - [The official page of the eslint-config-airbnb at npmjs.com](https://www.npmjs.com/package/eslint-config-airbnb);
+- [The official page of the eslint-plugin-jsx-a11y at npmjs.com](https://www.npmjs.com/package/eslint-plugin-jsx-a11y);
 - [Add Eslint, Prettier, and Airbnb Style Guide to Your Project](https://dev.to/iamzarv/add-eslint-prettier-and-airbnb-to-your-project-3mo8)  
   **note**: a little bit outdated but maybe useful;
 - [toreylittlefield/React-Prettier-Airbnb-Eslint-Config-Setup.](https://github.com/toreylittlefield/React-Prettier-Airbnb-Eslint-Config-Setup)  
