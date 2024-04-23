@@ -1,7 +1,7 @@
 {
-  "name": "boilerplate-react-ts",
+  "name": "boilerplate-webpack-react-ts",
   "version": "1.0.0",
-  "description": "It's a boilerplate for usage of react (with hooks) with pure TS in a future project (FSD architecture prior). Check out the docs below to be in actual tune!",
+  "description": "It's a boilerplate for usage of react (with hooks) with pure TS in a future project (FSD architecture prior with Webpack). Check out the docs below to be in actual tune!",
   "main": "index.tsx",
   "type": "module",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Dmitriy-Frostoff/boilerplate-react-ts"
+    "url": "git+https://github.com/Dmitriy-Frostoff/boilerplate-webpack-react-ts"
   },
   "keywords": [
     "webpack",
@@ -27,9 +27,9 @@
   "author": "Dmitriy Frostoff",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Dmitriy-Frostoff/boilerplate-react-ts/issues"
+    "url": "https://github.com/Dmitriy-Frostoff/boilerplate-webpack-react-ts/issues"
   },
-  "homepage": "https://github.com/Dmitriy-Frostoff/boilerplate-react-ts?tab=readme-ov-file#readme",
+  "homepage": "https://github.com/Dmitriy-Frostoff/boilerplate-webpack-react-ts?tab=readme-ov-file#readme",
   "devDependencies": {
     "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
