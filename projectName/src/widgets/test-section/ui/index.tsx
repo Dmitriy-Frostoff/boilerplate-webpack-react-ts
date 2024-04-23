@@ -1,7 +1,7 @@
 import React, { StrictMode } from 'react';
 import githubLogoAnimated from '../../../shared/assets/images/gif/github.gif';
 
-export function TestSection() {
+export function TestSection(): React.JSX.Element {
   return (
     <section className="layout-one-column test-section">
       <div className="layout-one-column test-section__container">

@@ -4,7 +4,7 @@ import githubLogoActive from '../../../shared/assets/images/svg/footer/_active/g
 import rs_school_jsLogo from '../../../shared/assets/images/svg/footer/rs_school_js.svg';
 import rs_school_jsLogoActive from '../../../shared/assets/images/svg/footer/_active/rs_school_js_active.svg';
 
-export function Footer() {
+export function Footer(): React.JSX.Element {
   return (
     <footer className="container layout-one-column footer__container">
       <ul className="layout-multiple-columns footer__list">

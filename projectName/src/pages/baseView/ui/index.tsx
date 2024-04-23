@@ -1,8 +1,8 @@
 import React, { StrictMode } from 'react';
 
-import { Main, TestSection, Footer } from '../../../widgets/index.js';
+import { Main, TestSection, Footer } from '../../../widgets/index';
 
-export function BaseView() {
+export function BaseView(): React.JSX.Element {
   return (
     <>
       <Main>

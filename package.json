@@ -1,24 +1,25 @@
 {
-  "name": "boilerplate-react-js",
+  "name": "boilerplate-react-ts",
   "version": "1.0.0",
-  "description": "It's a boilerplate for usage of react (with hooks) with pure JS in a future project (FSD architecture prior). Check out the docs below to be in actual tune!",
-  "main": "index.js",
+  "description": "It's a boilerplate for usage of react (with hooks) with pure TS in a future project (FSD architecture prior). Check out the docs below to be in actual tune!",
+  "main": "index.tsx",
   "type": "module",
   "scripts": {
-    "start": "webpack-dev-server --config ./configs/webpack/webpack.config.js --progress",
-    "dev": "webpack --config ./configs/webpack/webpack.config.js --node-env=development --progress",
-    "build": "webpack --config ./configs/webpack/webpack.config.js --node-env=production --progress"
+    "start": "cross-env NODE_OPTIONS='--import=tsx' TSX_TSCONFIG_PATH='./configs/ts/tsconfig.json' webpack-dev-server --config ./configs/webpack/webpack.config.ts --node-env=development --progress",
+    "dev": "cross-env NODE_OPTIONS='--import=tsx' TSX_TSCONFIG_PATH='./configs/ts/tsconfig.json' webpack --config ./configs/webpack/webpack.config.ts --node-env=development --progress",
+    "build": "cross-env NODE_OPTIONS='--import=tsx' TSX_TSCONFIG_PATH='./configs/ts/tsconfig.json' webpack --config ./configs/webpack/webpack.config.ts --node-env=production --progress"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Dmitriy-Frostoff/boilerplate-react-js"
+    "url": "git+https://github.com/Dmitriy-Frostoff/boilerplate-react-ts"
   },
   "keywords": [
     "webpack",
     "html",
     "scss",
     "css-modules",
-    "js",
+    "ts",
+    "typescript",
     "components",
     "FSD",
     "react"
@@ -26,16 +27,47 @@
   "author": "Dmitriy Frostoff",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Dmitriy-Frostoff/boilerplate-react-js/issues"
+    "url": "https://github.com/Dmitriy-Frostoff/boilerplate-react-ts/issues"
   },
-  "homepage": "https://github.com/Dmitriy-Frostoff/boilerplate-react-js?tab=readme-ov-file#readme",
+  "homepage": "https://github.com/Dmitriy-Frostoff/boilerplate-react-ts?tab=readme-ov-file#readme",
   "devDependencies": {
-    "@babel/core": "^7.24.4",
-    "@babel/preset-react": "^7.24.1",
-    "babel-loader": "^9.1.3",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@types/react": "^18.2.79",
+    "@types/react-dom": "^18.2.25",
+    "@typescript-eslint/eslint-plugin": "^7.7.1",
+    "@typescript-eslint/parser": "^7.7.1",
+    "cross-env": "^7.0.3",
+    "css-loader": "^7.1.1",
+    "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-react": "^7.34.1",
-    "eslint-plugin-react-hooks": "^4.6.0"
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "html-loader": "^5.0.0",
+    "html-webpack-plugin": "^5.6.0",
+    "husky": "^9.0.11",
+    "image-minimizer-webpack-plugin": "^4.0.0",
+    "imagemin": "^8.0.1",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-jpegtran": "^7.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-svgo": "^10.0.1",
+    "mini-css-extract-plugin": "^2.9.0",
+    "prettier": "^3.2.5",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.75.0",
+    "sass-loader": "^14.2.1",
+    "ts-loader": "^9.5.1",
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.5",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
   },
   "dependencies": {
     "react": "^18.2.0",

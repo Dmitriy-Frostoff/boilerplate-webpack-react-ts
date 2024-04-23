@@ -11,7 +11,7 @@ It's a boilerplate for usage of `webpack 5+`, `html`, `scss/css`, `ts` with `rea
 ```ts
 export default {
   resolve: {
-    extensions: [".tsx", ".ts", ".jsx", ".js"],
+    extensions: ['.tsx', '.ts', '.jsx', '.js'],
   },
 };
 ```
@@ -22,7 +22,7 @@ export default {
 - don't forget to rename all the `<project_name>` or `projectName` names to desired one! Also check the following list of files, folders and linked things, to insure about the replacement:
   - `./projectName`;
   - `webpack.config.ts` all the occurrences of `projectName` in the `entry`, `output` etc (path: `./configs/webpack/webpack.config.ts`);
-  - `index.ts` all the occurrences of `projectName` (path: `projectName/src/index.ts`);
+  - `index.tsx` all the occurrences of `projectName` (path: `projectName/src/index.tsx`);
   - `projectNameSelfCheck` and all subfolders and files inside (path: `projectName/src/shared/projectNameSelfCheck/index.ts`);
   - `index.html` project `title` and `meta.content` (path: `projectName/src/pages/index.html` or `projectName/src/widgets/head/_head.html` for only `_head.html` chunk usage in component with `.tsx`)
 - files with extension `.gitkeep` are only for adding `empty folders` to the staging area and for continious committing. Since the folder turn to be not empty you can for sure delete this files (they are for nothing but only for saving folder structure (check the link for more [what is .gitkeep for?](https://stackoverflow.com/questions/115983/how-do-i-add-an-empty-directory-to-a-git-repository)));
@@ -63,25 +63,39 @@ To delete an unnecessary `package` use the following command ([official npm Docs
 
 The boilerplate is set to use ECMAScript modules (ESM) (see the `package.json` => `{"type": "module"}`);
 
+#### TypeScript
+
+The boilerplate is created to use `TypeScript` primary. There's a `TS` config file (`configs/ts/tsconfig.json`) and types declaration for `TS` (`configs/ts/global.d.ts`) to handle imported assets files (e.g. `.svg`, `.html`, `.scss`, `.css` etc).
+
+**The common struture of the `tsconfig.json` is**
+
+```ts
+  {
+    "compilerOptions": {...},
+    "include": [...],
+    "exclude": []
+  }
+```
+
+`tsconfig.json` is containing particularly default settings (check the file for details, also take a notice of the [typescriptlang.org/tsconfig](https://www.typescriptlang.org/tsconfig)).
+
 #### webpack
 
-`webpack` is turned to use `React` library with `Babel` and to bundle all assets and reduce final bundle (for example: images are minimized as possible) to have as result `main.js`, `index.html`, `main.css` and `src/assets` (file structure is save as is! check my custom made function in the `output.assetModuleFilename`. It was made relying on this [webpack 5 assetModuleFilename stackoverflow.com](https://stackoverflow.com/questions/68814833/webpack-5-assets-module-how-to-keep-the-folder-structure-in-the-output-folder)).
+`webpack` is turned to use `React` library to bundle all assets and reduce final bundle (for example: images are minimized as possible) to have as result `main.js`, `index.html`, `main.css` and `src/assets` (file structure is save as is! check my custom made function in the `output.assetModuleFilename`. It was made relying on this [webpack 5 assetModuleFilename stackoverflow.com](https://stackoverflow.com/questions/68814833/webpack-5-assets-module-how-to-keep-the-folder-structure-in-the-output-folder)).
 
 `webpack` uses:
 
-- `babel-loader`, `"@babel/core`, `@babel/preset-react` for ability to load and handle `.jsx` and `React` components in the `*.js` files. As is it's assumed to use actual ECMAScript standard in `.(js|jsx)` files and just transform `React` syntax into `React.createElement()` function usage for ability to handle it with `Webpack`;
-- `html-loader` for ability to load `.html` files into `*.js` one;
-- `html-webpack-plugin` to nest final `script.js` file (currently to the `head` of html file. Check `inject: 'head'` option in the `./configs/webpack/webpack.config.js` HtmlWebpackPlugin options) and final `main.css` styles file to the final html template.
+- `cross-env` - to set the `Node.js`'s `NODE_ENV` and `NODE_OPTIONS` for scripts in the boilerplate;
+- `typescript` - to add and to use TypeScript in the boilerplate;
+- `tsx` - is a CLI command (alternative to node) for seamlessly running TypeScript & ESM in both commonjs & module package types in the boilerplate (it's a wrapper around the `Node.js`);
+- `ts-loader` - for ability to use `.ts` (`.tsx`) files;
+- `html-loader` for ability to load `.html` files into `*.ts` one;
+- `html-webpack-plugin` to nest final `script.ts` file (currently to the `head` of html file. Check `inject: 'head'` option in the `./configs/webpack/webpack.config.ts` HtmlWebpackPlugin options) and final `main.css` styles file to the final html template.
 - `image-minimizer-webpack-plugin`, `imagemin`, `imagemin-gifsicle`, `imagemin-jpegtran`, `imagemin-optipng`, `imagemin-svgo` - a fable things to reduce size of the image resources with lossless quality optimization (can be changed, use offical docs for more);
 - `mini-css-extract-plugin` - to bundle final external css file;
 - `resolve-url-loader` - loader for Sass to ease assets pathes' setting relying on current file but not to the output one (**note**: `sourceMap: true` in the `sass-loader` options is lifeworth required for working the plugin!!!);
 - `sass` - for using all SCSS / Sass features;
-- `sass-loader` - loader for ability to read and use `.scss` / `.sass` files inside `*.js` one;
-
-#### Babel
-
-`Babel` as mentioned above is used to transform `React` syntax into `Webpack`'s appropriate one. Also there's a lot of possibilities to use this powerful tool. E.g. for transforming actual ECMAScript into older one for legacy browsers support via `@babel/preset-env` preset usage. Check the `babel` docs for more [Babel docs](https://babeljs.io/docs/).
-Also check the current `babel.config.js` for details (path: `configs/babel/babel.config.js`).
+- `sass-loader` - loader for ability to read and use `.scss` / `.sass` files inside `*.ts` one;
 
 #### SCSS / Sass
 
@@ -93,7 +107,7 @@ Also check the current `babel.config.js` for details (path: `configs/babel/babel
 - `constants` (path: `projectName/src/shared/ui/common styles/abstracts/_constants.scss`),
 - `mixins` (path: `projectName/src/shared/ui/common styles/abstracts/_mixins.scss`),
 - `placeholders` (path: `projectName/src/shared/ui/common styles/abstracts/_placeholders.scss`).
-  You can check them for benefits or delete otherwise (also check `index.scss` file `projectName/src/app/index.scss` to delete unused anymore scss files!).
+  You can check them for benefits or delete otherwise (also check `index.scss` file `projectName/src/app/styles/index.scss` to delete unused anymore scss files!).
 
 Also there's `base` folder with styles or classes that impact on entire boilerplate layout view and includes `Blocks` (BEM methodology). There're
 
@@ -116,36 +130,36 @@ are `css-modules` with `local` scope.
 
 ---
 
-#### JavaScript / Component approach
+#### TypeScript / Component approach
 
-`JS` rules all the things inside the boilerplate. The only and one. Entire boilerplate structure is made for only the goal - turn everything into the hierarchical components (`React` one and other Frameworks like), where every component is as much as possible unconnected and incapsulated unit for maximum reusage by higher ordered ones in a project (it's must be the only strict linear connection from higher standing components to lower one due to Feature-Sliced Design(FSD) architecture principle!).
+`TS` (and `JS` as secondary) rules all the things inside the boilerplate. The only and one. Entire boilerplate structure is made for only the goal - turn everything into the hierarchical components (`React` one and other Frameworks like), where every component is as much as possible unconnected and incapsulated unit for maximum reusage by higher ordered ones in a project (it's must be the only strict linear connection from higher standing components to lower one due to Feature-Sliced Design(FSD) architecture principle!).
 
-There're chunks like `_<component_filename>.html`, `_<component_filename>.scss` and optional `_<component_filename>.(js|jsx)` It's possible to include them into upper - standing `index.js` using `webpack` features of loaders. The `index.js` plays a role of `public api` for other components to import and usage.
+There're chunks like `_<component_filename>.html`, `_<component_filename>.scss` and optional `_<component_filename>.(ts|tsx)` It's possible to include them into upper - standing `index.ts` using `webpack` features of loaders. The `index.ts` plays a role of `public api` for other components to import and usage.
 
 But the best possible way for nowdays is to use appropriate to your goals architecture (MVC, MVP, MVVM, Module Architecture, Atomic Design, Feature-Sliced Design(FSD) etc) with the power of `reactive frameworks and libraries` usage for creating `Single Page Applications` (`SPA`) or similar `applications`. The boilerplate structure is turned to use `FSD architecture` with `React` (to learn more about `FSD` check the [FSD official docs](https://feature-sliced.design/docs/get-started) and [React official website](https://react.dev/)).
 
 ### The boilerplate structure and brief descriptions:
 
-- `configs/` - the folder includes config files for: Babel package currently. It's possible to add `prettier/eslint/husky` to the boilerplate from [boilerplate-eslint-prettier-husky](https://github.com/Dmitriy-Frostoff/boilerplate-eslint-prettier-husky);
+- `configs/` - the folder includes config files for: `TypeScript` package currently. It's possible to add `prettier/eslint/husky` to the boilerplate from [boilerplate-eslint-prettier-husky](https://github.com/Dmitriy-Frostoff/boilerplate-eslint-prettier-husky);
 
-**[FSD structure](https://feature-sliced.design/docs/get-started/overview "FSD structure official docs")**  
+**[FSD structure](https://feature-sliced.design/docs/get-started/overview 'FSD structure official docs')**  
 <a href="https://feature-sliced.design/docs/get-started/overview" target="_blank">  
  <img width="50%" height="50%" src="https://feature-sliced.design/assets/images/visual_schema-e826067f573946613dcdc76e3f585082.jpg" alt="Feature-Sliced Design Basics"/>
 </a>
 
 - `projectName/src/` - source folder for `layers` of a future project:
 
-  - `projectName/src/index.js` - the top - level high - ordered `Public API file` to load implemented business logic of `layers` (to render up ready app, in React like way say);
+  - `projectName/src/index.tsx` - the top - level high - ordered `Public API file` to load implemented business logic of `layers` (to render up ready app, in React like way say);
 
   1. `projectName/src/shared` - `layer`, there're reusable functionality, detached from the specifics of the project/business. (e.g. UIKit, libs, API).
 
-     **Take a notice: `shared` slice doesn't have it's main `Public API file` `index.js`! Instead the `Public API file` is only inside the ready - to - use `segment`!!!**
+     **Take a notice: `shared` slice doesn't have it's main `Public API file` `index.ts`! Instead the `Public API file` is only inside the ready - to - use `segment`!!!**
 
   - `projectName/src/shared/api` - `slice`, all the APIs for usage all over the app / project from the backend;
   - `projectName/src/shared/assets` - `slice`, there're all the images, icons, fonts, music, video etc sources of a future project as is (includes `segements` in other words);
   - `projectName/src/shared/lib` - `slice`, the libraries commonly used by high - ordered `layers`;
   - `projectName/src/shared/pixel perfect drafts` - `slice`, drafts for desktop, tablet and mobile for usage in the pixel perfect extension in the web browser to check the draft matching (delete it if unnecessary);
-  - `projectName/src/shared/projectNameSelfCheck` - `slice`, there's a template function for logging self - check of the task (the Rolling Scopes School for only. Can be deleted easily and don't forget to delete the file's import from `projectName/src/index.js`!);
+  - `projectName/src/shared/projectNameSelfCheck` - `slice`, there's a template function for logging self - check of the task (the Rolling Scopes School for only. Can be deleted easily and don't forget to delete the file's import from `projectName/src/index.tsx`!);
   - `projectName/src/shared/ui` - `slice`, there're commonly used by high-ordered `slices` UI parts:
 
     - `projectName/src/shared/ui/common styles` - `segment`, commonly used styles
@@ -160,13 +174,13 @@ But the best possible way for nowdays is to use appropriate to your goals archit
 
       - `projectName/src/components/layout` - `segment`, includes `_content-structure.scss` file with basic layouts to use in a future project (one column or multiple columns as basic (or foundation as you wish) and they can be easily added with the necessary property modificators of new styling classes (e.g. for current paragraph or section to align everything to the center etc as BEM recommends, behaves like `CSS frameworks'` classes do)) (`_content-structure.scss` rely on `flex` or `grid` basics, also depend on mixins in the `projectName/src/shared/ui/common styles/abstracts/_mixins.scss` file so check it out or modify for your needs);
 
-  - `projectName/src/shared/utilities` - `segment`, contains utilities and helpers commonly used in the entire app (assumed to take them from [boilerplate-webpack-gulp-html-css-js-components](https://github.com/Dmitriy-Frostoff/boilerplate-webpack-gulp-html-scss-js-components));
+  - `projectName/src/shared/utilities` - `segment`, contains utilities and helpers commonly used in the entire app (assumed to take them from [boilerplate-webpack-gulp-html-css-ts-components](https://github.com/Dmitriy-Frostoff/boilerplate-webpack-gulp-html-scss-ts-components));
 
-    - `projectName/src/shared/utilities/handleFilesWithDynamicHash` - `segment`, the utility to handle appropriately with the files with dynamically generated name hashes. Check the example and docs inside the `projectName/src/shared/utilities/handleFilesWithDynamicHash/getCashedFilename.js` for more;
+    - `projectName/src/shared/utilities/handleFilesWithDynamicHash` - `segment`, the utility to handle appropriately with the files with dynamically generated name hashes. Check the example and docs inside the `projectName/src/shared/utilities/handleFilesWithDynamicHash/getCashedFilename.ts` for more;
 
-    - `projectName/src/shared/utilities/handleFilesWithDynamicHash` - `segment`, the utility to improt all files from folder (to nest it to the bundle). Check the example and docs inside the `projectName/src/shared/utilities/handleFilesWithDynamicHash/importAllfromFolder.js` for more;
+    - `projectName/src/shared/utilities/handleFilesWithDynamicHash` - `segment`, the utility to improt all files from folder (to nest it to the bundle). Check the example and docs inside the `projectName/src/shared/utilities/handleFilesWithDynamicHash/importAllfromFolder.ts` for more;
 
-  **all the next (or higher - ordered `slices`) include Public API `index.js` directly inside the slice (folder) to interract with higher - ordered slices or head - chief over the slices `index.js` file. Use them only to import necessary parts / functionality and to keep `slices` encapsulation**
+  **all the next (or higher - ordered `slices`) include Public API `index.ts` directly inside the slice (folder) to interract with higher - ordered slices or head - chief over the slices `index.ts` file. Use them only to import necessary parts / functionality and to keep `slices` encapsulation**
 
   2. `projectName/src/entities` — business entities. (e.g., User, Product, Order).  
      More descriptions: Contains the shell of the card with slots for content and the interactive elements. The tile representing the post author is also here, but in a different slice. Simple words say: the product of your internet market, a song of your audioplayer;
@@ -178,7 +192,7 @@ But the best possible way for nowdays is to use appropriate to your goals archit
      More descriptions: contains the route components for each page in the app, mostly composition, hardly any logic.
      Within that application, let's consider a post card in a news feed. Simple words say: it's an entire ready page that contain `widgets` or `layers` below it in the hierarchy (**strictly** below ones!!!);
 
-  - `projectName/src/pages/index.html` - it's template page (or initial page) for first `SPA` predefined view and it's a base for `React` injection into the page via `<div id="root"></div>` in the body (the `index.html` from [boilerplate-webpack-gulp-html-css-js-components](https://github.com/Dmitriy-Frostoff/boilerplate-webpack-gulp-html-scss-js-components) must be replace with this one!);
+  - `projectName/src/pages/index.html` - it's template page (or initial page) for first `SPA` predefined view and it's a base for `React` injection into the page via `<div id="root"></div>` in the body (the `index.html` from [boilerplate-webpack-gulp-html-css-ts-components](https://github.com/Dmitriy-Frostoff/boilerplate-webpack-gulp-html-scss-ts-components) must be replace with this one!);
 
   6. `projectName/src/processes` (deprecated) — complex inter-page scenarios. (e.g., authentication);
   7. `projectName/src/app` — app-wide settings, styles and providers.
@@ -197,46 +211,46 @@ But the best possible way for nowdays is to use appropriate to your goals archit
 
 [Also useful link(RU) about the FSD architecture with clear definition and examples by @IrkaTyman](https://habr.com/ru/articles/795823/);
 
-**Important!** If you tend only to transfer module to upper hierarchy one (e.g. `index.scss` from the `app` layer to the main `index.js`) do the following steps:
+**Important!** If you tend only to transfer module to upper hierarchy one (e.g. `index.scss` from the `app` layer to the main `index.ts`) do the following steps:
 
-```js
-// projectName/src/app/index.js
-import "./index.scss";
+```ts
+// projectName/src/app/index.ts
+import './index.scss';
 ```
 
 than
 
-```js
-// projectName/src/index.js
-import "./app/index.js";
+```tsx
+// projectName/src/index.tsx
+import './app/index';
 ```
 
 to clarify the `Webpack` to handle it correctly.
 
 If there's a need to use imported as a data (e.g. import `.html` file to handle it as a string) step the following:
 
-```js
-// projectName/src/app/index.js
-import anyNameYouWish from "../pages/index.html";
+```ts
+// projectName/src/app/index.ts
+import anyNameYouWish from '../pages/index.html';
 export { anyNameYouWish };
 ```
 
 than
 
-```js
-// projectName/src/index.js
-import "./app/index.js"; /*e.g. to import index.scss from example above (to demand Webpack load global styles)
+```tsx
+// projectName/src/index.tsx
+import './app/index'; /*e.g. to import index.scss from example above (to demand Webpack load global styles)
 this is only to show, that it possible to use import 'entireModule' and import {something} from 'entireModule'
 */
-import { anyNameYouWish } from "./app/index.js";
+import { anyNameYouWish } from './app/index';
 ```
 
-If there're files like `chunk.abc5d.(css|js|anyExt)` in the `dist` folder so take care of correctness of usage
+If there're files like `chunk.abc5d.(css|ts|anyExt)` in the `dist` folder so take care of correctness of usage
 dynamic `import()`s because exactly it usage (that is `async` naturally) trigger Webpack to emit `fileChunks` [read more here](https://github.com/webpack/webpack/issues/12464).
 
 #### Best practicies
 
-- **Why to import file into `jsx module` and than use it as `props` in the component**
+- **Why to import file into `tsx module` and than use it as `props` in the component**
 
 Benefits:
 
@@ -254,14 +268,14 @@ To implement the approach correctly:
 
 - import desired asset file (image, song, video etc)
 
-```jsx
-import React, { StrictMode } from "react";
-import desiredAssetWithFileNameYouWish from "path/to/file.extension";
+```tsx
+import React, { StrictMode } from 'react';
+import desiredAssetWithFileNameYouWish from 'path/to/file.extension';
 ```
 
 - create component. e.g.:
 
-```jsx
+```tsx
 export function ExampleComponent() {
   return (
     <>
@@ -277,16 +291,22 @@ export function ExampleComponent() {
 ```
 
 - **may be far not the best practice ever but in some cases rather useful**
-  specify `props` and `props.children` in the `.jsx` (primarly for components only containing HTML markup, e.g. `projectName/src/widgets/main/ui/index.jsx`) to ease the process of nesting component inside the parent one (more precisely, this is only to read a one more time about `React props and porps.children` because `React` handle `props` specifyed/not specifyed - automatically and perfectly!!!)  
+  specify `props` and `props.children` in the `.tsx` (primarly for components only containing `HTML markup`, e.g. `projectName/src/widgets/main/ui/index.tsx`) to ease the process of nesting component inside the parent one (more precisely, this is only to read a one more time about `React props and porps.children` because `React` handle `props` specifyed/not specifyed - **automatically and perfectly**!!!)  
   e.g.:
 
-  ```jsx
-  import React, { StrictMode } from "react";
+  ```tsx
+  import React, { StrictMode } from 'react';
 
-  export function ExampleComponent(props) {
+  interface IExampleComponent {
+    children?: React.ReactNode;
+  }
+
+  export function ExampleComponent({
+    children,
+  }: IExampleComponent): React.JSX.Element {
     return (
       <section className="layout-one-column container example__container">
-        {props.children}
+        {children}
       </section>
     );
   }
@@ -294,22 +314,22 @@ export function ExampleComponent() {
 
   where `props` all the properties the initialized component contains currently, `props.children` all the component's children.
 
-  P.S. without explicit `props` and `{props.children}` specifying it works nice too)))
+  P.S. without explicit `props` and `{props.children}` or `{children}` specifying it works nice too)))
 
 ### Integration with [`Connections`](#Connections) links:
 
-**The [boilerplate-webpack-gulp-html-css-js-components](https://github.com/Dmitriy-Frostoff/boilerplate-webpack-gulp-html-scss-js-components) must be installed because the boilerplate is only addon for it and strongly require it!**
+**The [boilerplate-webpack-gulp-html-css-ts-components](https://github.com/Dmitriy-Frostoff/boilerplate-webpack-gulp-html-scss-ts-components) must be installed because the boilerplate is only addon for it and strongly require it!**
 
 To integrate the boilerplate do the following steps (**note**: copy the project structure as is!!! Take a notice to the `projectName/src/shared/ui/common styles/base/_common.scss` there **must be** styles for `#root`, `.root__container` and `.main__container`):
 
-- do all the steps in [boilerplate-webpack-gulp-html-scss-js-components](https://github.com/Dmitriy-Frostoff/boilerplate-webpack-gulp-html-scss-js-components) first (and then install all desired from [`Connections`](#Connections)) and then come back here;
+- do all the steps in [boilerplate-webpack-gulp-html-scss-ts-components](https://github.com/Dmitriy-Frostoff/boilerplate-webpack-gulp-html-scss-ts-components) first (and then install all desired from [`Connections`](#Connections)) and then come back here;
 
 - copy the `configs`, `projectName`, `.browserslistrc`, `.editorconfig`, `.gitignore` (optionally);
 
 - install current packages as `devDependencies` via bash command below:
 
 ```bash
-npm i -D @babel/core @babel/preset-react @commitlint/cli babel-loader eslint-config-airbnb eslint-plugin-react eslint-plugin-react-hooks
+npm i -D @types/react @types/react-dom eslint-config-airbnb eslint-config-airbnb-typescript eslint-plugin-react eslint-plugin-react-hooks
 ```
 
 - install current packages as `dependencies` via bash command below:
@@ -320,17 +340,34 @@ npm i react react-dom
 
 - do all the steps from the top of the document's [# !Important](#!Important) (i.e. rename `projectName`, delete unnecessary files);
 
-- add to the `webpack.config.js`(`configs/webpack/webpack.config.js`) 's `module.rules`:
+- change `webpack.config.ts`(`configs/webpack/webpack.config.ts`) 's entry point:
 
-```js
+```ts
+entry: [path.resolve(__dirname, '../../projectName/src/index.tsx')],
+```
+
+- add to the `configs/ts/tsconfig.json` into `compilerOptions`:
+
+```json
+...
+"lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+"jsx": "react-jsx",
+...
+```
+
+- add to the `webpack.config.ts`(`configs/webpack/webpack.config.ts`) 's `module.rules`:
+
+```ts
 {
-  test: /\.(?:js|mjs|cjs|jsx)$/,
+  test: /\.tsx?$/,
+  loader: 'ts-loader',
   exclude: /node_modules/,
-  use: {
-    loader: 'babel-loader',
-    options: {
-      configFile: path.resolve(__dirname, '../babel/babel.config.js'),
-    },
+  options: {
+    configFile: path.resolve(__dirname, '../ts/tsconfig.json'),
   },
 },
 ```
@@ -341,20 +378,32 @@ this is required for `Webpack` to handle `React` syntax;
 
 ```js
 {
-  files: ['*.js', '*.jsx'],
+  files: ['*.tsx, *.ts'],
   extends: [
-    'airbnb-base',
-    'airbnb',
+    'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
+    'airbnb-base',
+    'airbnb-typescript/base',
+    'airbnb',
+    'airbnb/hooks',
+    'airbnb-typescript',
     'prettier',
+    'prettier/@typescript-eslint',
     'prettier/react',
   ],
-  plugins: ['react', 'react-hooks'],
+  plugins: ['@typescript-eslint', 'react', 'react-hooks'],
   parserOptions: {
+    parser: '@typescript-eslint/parser',
+    project: path.resolve(__dirname, '../ts/tsconfig.json'),
+    ecmaVersion: 'latest',
     ecmaFeatures: {
       jsx: true,
     },
+  },
+  rules: {
+    'react/jsx-filename-extension': [1, { extensions: ['.ts, .tsx'] }],
+    'react/react-in-jsx-scope': 'off', // For React 17+, you do not need to import React into JSX files
+    // '@typescript-eslint/explicit-function-return-type': 'off' /*If you prefer not to specify the type of the return value of the functions  */,
   },
 },
 ```
@@ -376,6 +425,27 @@ With the new `packages` releases, the ones above can turn to pumpkin, so check'e
 
 ---
 
+#### TypeScript
+
+- [The official website of the TypeScript](https://www.typescriptlang.org/);
+- [The official github of the TypeScript](https://github.com/microsoft/TypeScript);
+- [Webpack.js.org TypeScript guide](https://webpack.js.org/guides/typescript/);
+- [The official github of the TypeScript loader for webpack](https://github.com/TypeStrong/ts-loader);
+- [TypeScript loader for webpack at npmjs.com](https://www.npmjs.com/package/ts-loader);
+- [About the TypeScript config options](https://www.typescriptlang.org/tsconfig);
+- [About the TypeScript tsc CLI Options](https://www.typescriptlang.org/docs/handbook/compiler-options.html);
+- [Typescript-d-ts-file-not-recognized](https://stackoverflow.com/questions/59728371/typescript-d-ts-file-not-recognized);
+- [Typescript error when trying to import an html file](https://stackoverflow.com/questions/73225943/typescript-error-when-trying-to-import-an-html-file);
+- [Typescript: .d.ts file not recognized](https://stackoverflow.com/questions/59728371/typescript-d-ts-file-not-recognized);
+- [How to configure custom global interfaces (.d.ts files) for TypeScript?](https://stackoverflow.com/questions/42233987/how-to-configure-custom-global-interfaces-d-ts-files-for-typescript);
+- [How to import CSS modules with Typescript, React and Webpack](https://stackoverflow.com/questions/41336858/how-to-import-css-modules-with-typescript-react-and-webpack);
+- [The official GitHub of the `tsx` package](https://github.com/privatenumber/tsx);
+- [TypeScript Execute (tsx): Node.js enhanced to run TypeScript & ESM files page at the npmjs.com](https://www.npmjs.com/package/tsx);
+- [VueJS, Typescript and VSCode - "Relative import paths need explicit file extensions in EcmaScript imports..."](https://stackoverflow.com/questions/76746153/vuejs-typescript-and-vscode-relative-import-paths-need-explicit-file-extensi);
+- [JSX](https://www.typescriptlang.org/docs/handbook/jsx.html);
+
+---
+
 #### React
 
 - [The official website of the React library](https://react.dev/);
@@ -384,24 +454,25 @@ With the new `packages` releases, the ones above can turn to pumpkin, so check'e
 - [The official website of the Zustand library for global state management](https://docs.pmnd.rs/zustand/getting-started/introduction);
 - [The official website of the effector UI-logic](https://effector.dev/ru/);
 - [The official website of the Next.js The React Framework for the Web](https://nextjs.org/);
-
----
-
-#### Babel
-
-- [The official website of the Babel](https://babeljs.io/docs/);
-- [The official page of the @babel/core at npmjs.com](https://www.npmjs.com/package/@babel/core);
-- [The official page of the @babel/preset-env at npmjs.com](https://www.npmjs.com/package/@babel/preset-env);
-- [The official page of the @babel/preset-react at npmjs.com](https://www.npmjs.com/package/@babel/preset-react);
+- [Using the React children prop with TypeScript by Ohans Emmanuel, Oct 20, 2023](https://blog.logrocket.com/react-children-prop-typescript/);
 
 ---
 
 #### ESLint:
 
+- [The official page of the eslint-config-airbnb-typescript at npmjs.com](https://www.npmjs.com/package/eslint-config-airbnb-typescript);
+- [The official github repo of the eslint-config-airbnb-typescript](https://github.com/iamturns/eslint-config-airbnb-typescript);
 - [The official page of the eslint-plugin-react at npmjs.com](https://www.npmjs.com/package/eslint-plugin-react);
 - [The official github repo of the eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react);
 - [The official page of the eslint-plugin-react-hooks at npmjs.com](https://www.npmjs.com/package/eslint-plugin-react-hooks);
 - [The official page of the eslint-config-airbnb at npmjs.com](https://www.npmjs.com/package/eslint-config-airbnb);
+- [Add Eslint, Prettier, and Airbnb Style Guide to Your Project](https://dev.to/iamzarv/add-eslint-prettier-and-airbnb-to-your-project-3mo8)  
+  **note**: a little bit outdated but maybe useful;
+- [toreylittlefield/React-Prettier-Airbnb-Eslint-Config-Setup.](https://github.com/toreylittlefield/React-Prettier-Airbnb-Eslint-Config-Setup)  
+  **note**: a little bit outdated but maybe useful;
+- [Set up React JS with ESLint, Prettier and Airbnb - Plain English.](https://plainenglish.io/blog/set-up-react-js-with-eslint-prettier-and-airbnb-cc015363a7c7)  
+  **note**: a little bit outdated but maybe useful;
+- [Setup a React Vite project with TypeScript, Prettier & Vitest [2024]](https://medium.com/@nedopaka/setup-a-react-vite-project-with-typescript-prettier-vitest-2024-9bb6e919ac8f);
 
 ---
 
@@ -418,9 +489,6 @@ With the new `packages` releases, the ones above can turn to pumpkin, so check'e
 - [Official github repo of webpack-cli](https://github.com/webpack/webpack-cli);
 - [Official github repo of webpack-dev-server](https://github.com/webpack/webpack-dev-server);
 - [The official awesome webpack resources, libraries, tools and applications](https://webpack.js.org/awesome-webpack/#utility);
-- [Official page of babel-loader at webpack.js.org](https://webpack.js.org/loaders/babel-loader/);
-- [Official page of the babel-loader at npmjs.com](https://www.npmjs.com/package/babel-loader);
-- [Official github repo of babel-loader](https://webpack.js.org/loaders/babel-loader/);
 - [Official webpack docs: html-loader](https://webpack.js.org/loaders/html-loader/#root);
 - [Official github repo of html-loader](https://github.com/webpack-contrib/html-loader);
 - [Official webpack docs: html-webpack-plugin](https://webpack.js.org/plugins/html-webpack-plugin/#root);
@@ -469,6 +537,6 @@ With the new `packages` releases, the ones above can turn to pumpkin, so check'e
 
 - [boilerplate-eslint-prettier-husky](https://github.com/Dmitriy-Frostoff/boilerplate-eslint-prettier-husky);
 - [boilerplate-jest](https://github.com/Dmitriy-Frostoff/boilerplate-jest);
-- [boilerplate-webpack-gulp-html-scss-js-components](https://github.com/Dmitriy-Frostoff/boilerplate-webpack-gulp-html-scss-js-components);
+- [boilerplate-webpack-gulp-html-scss-ts-components](https://github.com/Dmitriy-Frostoff/boilerplate-webpack-gulp-html-scss-ts-components);
 
-#### done: April 21, 2024
+#### done: April 24, 2024
