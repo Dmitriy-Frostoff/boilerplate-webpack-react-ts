@@ -455,6 +455,7 @@ With the new `packages` releases, the ones above can turn to pumpkin, so check'e
 - [The official website of the effector UI-logic](https://effector.dev/ru/);
 - [The official website of the Next.js The React Framework for the Web](https://nextjs.org/);
 - [Using the React children prop with TypeScript by Ohans Emmanuel, Oct 20, 2023](https://blog.logrocket.com/react-children-prop-typescript/);
+- [React TypeScript Cheatsheet](https://react-typescript-cheatsheet.netlify.app/);
 
 ---
 
@@ -540,4 +541,4 @@ With the new `packages` releases, the ones above can turn to pumpkin, so check'e
 - [boilerplate-jest](https://github.com/Dmitriy-Frostoff/boilerplate-jest);
 - [boilerplate-webpack-gulp-html-scss-ts-components](https://github.com/Dmitriy-Frostoff/boilerplate-webpack-gulp-html-scss-ts-components);
 
-#### done: June 15, 2024
+#### done: June 25, 2024
