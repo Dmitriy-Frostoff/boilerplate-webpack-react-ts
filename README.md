@@ -388,8 +388,6 @@ this is required for `Webpack` to handle `React` syntax;
     'airbnb/hooks',
     'airbnb-typescript',
     'prettier',
-    'prettier/@typescript-eslint',
-    'prettier/react',
   ],
   plugins: ['@typescript-eslint', 'react', 'react-hooks'],
   parserOptions: {
@@ -541,4 +539,4 @@ With the new `packages` releases, the ones above can turn to pumpkin, so check'e
 - [boilerplate-jest](https://github.com/Dmitriy-Frostoff/boilerplate-jest);
 - [boilerplate-webpack-gulp-html-scss-ts-components](https://github.com/Dmitriy-Frostoff/boilerplate-webpack-gulp-html-scss-ts-components);
 
-#### done: June 25, 2024
+#### done: July 10, 2024
