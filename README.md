@@ -378,7 +378,7 @@ this is required for `Webpack` to handle `React` syntax;
 
 ```js
 {
-  files: ['*.tsx, *.ts'],
+  files: ['*.tsx', '*.ts'],
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
@@ -539,4 +539,4 @@ With the new `packages` releases, the ones above can turn to pumpkin, so check'e
 - [boilerplate-jest](https://github.com/Dmitriy-Frostoff/boilerplate-jest);
 - [boilerplate-webpack-gulp-html-scss-ts-components](https://github.com/Dmitriy-Frostoff/boilerplate-webpack-gulp-html-scss-ts-components);
 
-#### done: July 10, 2024
+#### done: August 14, 2024
