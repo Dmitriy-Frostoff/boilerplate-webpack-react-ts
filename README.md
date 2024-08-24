@@ -387,9 +387,10 @@ this is required for `Webpack` to handle `React` syntax;
     'airbnb',
     'airbnb/hooks',
     'airbnb-typescript',
+    'jsx-a11y/strict',
     'prettier',
   ],
-  plugins: ['@typescript-eslint', 'react', 'react-hooks', 'jsx-a11y/strict'],
+  plugins: ['@typescript-eslint', 'react', 'react-hooks', 'jsx-a11y'],
   parserOptions: {
     parser: '@typescript-eslint/parser',
     project: path.resolve(__dirname, '../ts/tsconfig.json'),
