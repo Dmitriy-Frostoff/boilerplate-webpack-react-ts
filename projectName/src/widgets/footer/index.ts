@@ -1,1 +1,3 @@
-export { Footer } from './ui/index';
+import Footer from './ui/index';
+
+export default Footer;

@@ -1,1 +1,3 @@
-export { BaseView } from './ui/index';
+import BaseView from './ui/index';
+
+export default BaseView;

@@ -1,1 +1,3 @@
-export { default as logSelfCheck } from './projectNameSelfCheck/projectNameSelfCheck';
+import logSelfCheck from './projectNameSelfCheck/projectNameSelfCheck';
+
+export default logSelfCheck;

@@ -1,1 +1,3 @@
-export { TestSection } from './ui/index';
+import TestSection from './ui/index';
+
+export default TestSection;

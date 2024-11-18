@@ -2,11 +2,12 @@ import React, { StrictMode } from 'react';
 import { Root, createRoot } from 'react-dom/client';
 
 import './app/index';
-import { logSelfCheck } from './shared/projectNameSelfCheck/index';
+
+import logSelfCheck from './shared/projectNameSelfCheck/index';
+
+import BaseView from './pages/index';
 
 logSelfCheck();
-
-import { BaseView } from './pages/index';
 
 const rootElem: HTMLElement | null = document.querySelector('#root');
 

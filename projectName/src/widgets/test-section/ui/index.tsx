@@ -1,10 +1,16 @@
 import React, { StrictMode } from 'react';
 import githubLogoAnimated from '../../../shared/assets/images/gif/github.gif';
 
-export function TestSection(): React.JSX.Element {
+import testSectionStyles from './test-section.module.scss';
+
+export default function TestSection(): React.JSX.Element {
   return (
-    <section className="layout-one-column test-section">
-      <div className="layout-one-column test-section__container">
+    <section
+      className={`layout-one-column ${testSectionStyles['test-section']}`}
+    >
+      <div
+        className={`layout-one-column ${testSectionStyles['test-section__container']}`}
+      >
         <h3 className="paragraph-xl text_let-space-3px text_uppercase text_light">
           Test test test
         </h3>

@@ -1,1 +1,3 @@
-export { BaseView } from './baseView/index';
+import BaseView from './baseView/index';
+
+export default BaseView;
