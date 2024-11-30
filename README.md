@@ -11,7 +11,7 @@ It's a boilerplate for usage of `webpack 5+`, `html`, `scss/css`, `ts` with `rea
 ```ts
 export default {
   resolve: {
-    extensions: [".tsx", ".ts", ".jsx", ".js"],
+    extensions: ['.tsx', '.ts', '.jsx', '.js'],
   },
 };
 ```
@@ -117,6 +117,10 @@ Also there's `base` folder with styles or classes that impact on entire boilerpl
 
 `layout` folder includes classes that forming `flex` or `grid` layout.
 
+**Caution!** Do not use `css-variables` in the `@mixins` with `@media`! It won't work! Use `SCSS/Sass` variables or `Absolute length units` like `px`. `@media` requires definitely set values, but `css-variables` are computed at the moment of applying to the HTML element.
+
+> Note: Variables do not work inside media queries and container queries. You can use the var() function in any part of a value in any property on an element. You cannot use var() for property names, selectors, or anything aside from property values, which means you can't use it in a media query or container query. [Using CSS custom properties (variables) / MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties).
+
 `index.scss` entire project styles bundle (details below).
 
 Also it's possible to use `css-modules` via the `css-loader` (check the [css-loader](https://github.com/webpack-contrib/css-loader?tab=readme-ov-file#modules) for details). Read more about the `css-modules` usage at [css-modules](https://github.com/css-modules/css-modules?tab=readme-ov-file) and then just turn the `.(css|sass|scss)` extension of the file with styles into `.module.(css|scss|sass)`.
@@ -149,7 +153,7 @@ But the best possible way for nowdays is to use appropriate to your goals archit
 
 - `configs/` - the folder includes config files for: `TypeScript` package currently. It's possible to add `prettier/eslint/husky` to the boilerplate from [boilerplate-eslint-prettier-husky](https://github.com/Dmitriy-Frostoff/boilerplate-eslint-prettier-husky);
 
-**[FSD structure](https://feature-sliced.design/docs/get-started/overview "FSD structure official docs")**  
+**[FSD structure](https://feature-sliced.design/docs/get-started/overview 'FSD structure official docs')**  
 <a href="https://feature-sliced.design/docs/get-started/overview" target="_blank">  
  <img width="50%" height="50%" src="https://feature-sliced.design/assets/images/visual_schema-e826067f573946613dcdc76e3f585082.jpg" alt="Feature-Sliced Design Basics"/>
 </a>
@@ -222,14 +226,14 @@ But the best possible way for nowdays is to use appropriate to your goals archit
 
 ```ts
 // projectName/src/app/index.ts
-import "./index.scss";
+import './index.scss';
 ```
 
 than
 
 ```tsx
 // projectName/src/index.tsx
-import "./app/index";
+import './app/index';
 ```
 
 to clarify the `Webpack` to handle it correctly.
@@ -238,7 +242,7 @@ If there's a need to use imported as a data (e.g. import `.html` file to handle 
 
 ```ts
 // projectName/src/app/index.ts
-import anyNameYouWish from "../pages/index.html";
+import anyNameYouWish from '../pages/index.html';
 export { anyNameYouWish };
 ```
 
@@ -246,10 +250,10 @@ than
 
 ```tsx
 // projectName/src/index.tsx
-import "./app/index"; /*e.g. to import index.scss from example above (to demand Webpack load global styles)
+import './app/index'; /*e.g. to import index.scss from example above (to demand Webpack load global styles)
 this is only to show, that it possible to use import 'entireModule' and import {something} from 'entireModule'
 */
-import { anyNameYouWish } from "./app/index";
+import { anyNameYouWish } from './app/index';
 ```
 
 If there're files like `chunk.abc5d.(css|ts|anyExt)` in the `dist` folder so take care of correctness of usage
@@ -276,8 +280,8 @@ To implement the approach correctly:
 - import desired asset file (image, song, video etc)
 
 ```tsx
-import React, { StrictMode } from "react";
-import desiredAssetWithFileNameYouWish from "path/to/file.extension";
+import React, { StrictMode } from 'react';
+import desiredAssetWithFileNameYouWish from 'path/to/file.extension';
 ```
 
 - create component. e.g.:
@@ -302,7 +306,7 @@ export function ExampleComponent() {
   e.g.:
 
   ```tsx
-  import React, { StrictMode } from "react";
+  import React, { StrictMode } from 'react';
 
   interface IExampleComponent {
     children?: React.ReactNode;
@@ -536,6 +540,7 @@ With the new `packages` releases, the ones above can turn to pumpkin, so check'e
 - [Official Sass docs: breaking changes - @use instead of @import](https://sass-lang.com/documentation/at-rules/use/);
 - [Official Sass docs: breaking changes - @forward instead of @import](https://sass-lang.com/documentation/at-rules/forward/);
 - [Issue with @extend, placeholders and @use](https://github.com/sass/dart-sass/issues/1042);
+- [Variables do not work inside media queries and container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties);
 
 ---
 
@@ -557,4 +562,4 @@ With the new `packages` releases, the ones above can turn to pumpkin, so check'e
 - [boilerplate-jest](https://github.com/Dmitriy-Frostoff/boilerplate-jest);
 - [boilerplate-webpack-gulp-html-scss-ts-components](https://github.com/Dmitriy-Frostoff/boilerplate-webpack-gulp-html-scss-ts-components);
 
-#### done: November 18, 2024
+#### done: November 30, 2024
