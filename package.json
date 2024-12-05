@@ -7,7 +7,8 @@
   "scripts": {
     "start": "cross-env NODE_OPTIONS='--import=tsx' TSX_TSCONFIG_PATH='./configs/ts/tsconfig.json' webpack-dev-server --config ./configs/webpack/webpack.config.ts --node-env=development --progress",
     "dev": "cross-env NODE_OPTIONS='--import=tsx' TSX_TSCONFIG_PATH='./configs/ts/tsconfig.json' webpack --config ./configs/webpack/webpack.config.ts --node-env=development --progress",
-    "build": "cross-env NODE_OPTIONS='--import=tsx' TSX_TSCONFIG_PATH='./configs/ts/tsconfig.json' webpack --config ./configs/webpack/webpack.config.ts --node-env=production --progress"
+    "build": "cross-env NODE_OPTIONS='--import=tsx' TSX_TSCONFIG_PATH='./configs/ts/tsconfig.json' webpack --config ./configs/webpack/webpack.config.ts --node-env=production --progress",
+    "update:packages": "node ./configs/execa/main.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,8 @@
     "typescript",
     "components",
     "FSD",
-    "react"
+    "react",
+    "execa"
   ],
   "author": "Dmitriy Frostoff",
   "license": "MIT",
@@ -31,12 +33,13 @@
   },
   "homepage": "https://github.com/Dmitriy-Frostoff/boilerplate-webpack-react-ts?tab=readme-ov-file#readme",
   "devDependencies": {
-    "@types/react": "^18.3.12",
+    "@types/react": "^18.3.13",
     "@types/react-dom": "^18.3.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.2",
-    "eslint-plugin-react-hooks": "^4.6.2"
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "execa": "^9.5.1"
   },
   "dependencies": {
     "react": "^18.3.1",
