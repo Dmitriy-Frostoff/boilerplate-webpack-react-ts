@@ -179,8 +179,8 @@ But the best possible way for nowdays is to use appropriate to your goals archit
         Take a notice: `projectName/src/shared/ui/common styles/abstracts/_constants.scss` turn to use `CSS variables`! It's far convenient for the result css file (`DRY` principle as is);
 
       - `projectName/src/components/base` - `segment`, there're Blocks (in BEM terminology). For now there're
-        `_normalize.scss` (to softly set your browser default styles to be more 'average' with others one to ease the process of crossbrowsers development),
-        `_typography.scss` - this file includes font data and variables (`CSS variables` to be precise) of font size as for example,
+        `_normalize.scss` (to softly set your browser default styles to be more 'average' with others one to ease the process of crossbrowsers development, based on [`modern-normalize`](https://github.com/sindresorhus/modern-normalize) package),  
+        `_typography.scss` - this file includes font data and variables (`CSS variables` to be precise) of font size as for example,  
         `_common.scss` - this file contains the most basic classes of a project perfomance like titles properties, containers properties, modificators for text classes etc;
 
       - `projectName/src/components/layout` - `segment`, includes `_content-structure.scss` file with basic layouts to use in a future project (one column or multiple columns as basic (or foundation as you wish) and they can be easily added with the necessary property modificators of new styling classes (e.g. for current paragraph or section to align everything to the center etc as BEM recommends, behaves like `CSS frameworks'` classes do)) (`_content-structure.scss` rely on `flex` or `grid` basics, also depend on mixins in the `projectName/src/shared/ui/common styles/abstracts/_mixins.scss` file so check it out or modify for your needs);
@@ -534,6 +534,12 @@ With the new `packages` releases, the ones above can turn to pumpkin, so check'e
 
 ---
 
+#### Modern-normalize
+
+- [Official github repo of Modern-normalize](https://github.com/sindresorhus/modern-normalize);
+
+---
+
 #### Sass / SCSS
 
 - [Official Sass docs](https://sass-lang.com/);
@@ -562,4 +568,4 @@ With the new `packages` releases, the ones above can turn to pumpkin, so check'e
 - [boilerplate-jest](https://github.com/Dmitriy-Frostoff/boilerplate-jest);
 - [boilerplate-webpack-gulp-html-scss-ts-components](https://github.com/Dmitriy-Frostoff/boilerplate-webpack-gulp-html-scss-ts-components);
 
-#### done: November 30, 2024
+#### done: December 23, 2024
